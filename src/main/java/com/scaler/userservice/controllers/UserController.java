@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     public User login(){
         // check if email and pwd in DB
-        // is yes, return user, else throw error.
+        // if yes, return user, else throw error.
         return null;
     }
 
