@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
+    // write the implementation.
+    // send the Pull Request.
+
     public User login(){
         // check if email and pwd in DB
         // if yes, return user, else throw error.
