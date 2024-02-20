@@ -1,13 +1,15 @@
 CREATE TABLE `role`
 (
-    id   INT NOT NULL,
-    name VARCHAR(255) NULL,
+    id      INT AUTO_INCREMENT NOT NULL,
+    deleted BIT(1) NOT NULL,
+    name    VARCHAR(255) NULL,
     CONSTRAINT pk_role PRIMARY KEY (id)
 );
 
 CREATE TABLE token
 (
-    id        INT NOT NULL,
+    id        INT AUTO_INCREMENT NOT NULL,
+    deleted   BIT(1) NOT NULL,
     value     VARCHAR(255) NULL,
     user_id   INT NULL,
     expiry_at datetime NULL,
@@ -16,7 +18,8 @@ CREATE TABLE token
 
 CREATE TABLE user
 (
-    id                INT    NOT NULL,
+    id                INT AUTO_INCREMENT NOT NULL,
+    deleted           BIT(1) NOT NULL,
     name              VARCHAR(255) NULL,
     email             VARCHAR(255) NULL,
     hash_password     VARCHAR(255) NULL,

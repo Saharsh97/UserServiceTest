@@ -14,7 +14,6 @@ public class User extends BaseModel{
     private String name;
     private String email;
     private String hashPassword;
-
     @OneToMany
     private List<Role> roles;
     private boolean isEmailVerified;
