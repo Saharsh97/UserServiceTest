@@ -61,12 +61,15 @@ public class UserService {
 
         token.setValue(RandomStringUtils.randomAlphanumeric(120));
 
+        // TODO 1: change the above token to a JWT token
         Token savedToken = tokenRepository.save(token);
         return savedToken;
     }
 
     public boolean logout(String tokenValue) throws TokenNotExistsOrAlreadyExpiredException {
-        Optional<Token> tokenOptional = tokenRepository.findTokenByValueAndDeleted(tokenValue, false);
+        Optional<Token> tokenOptional =
+                tokenRepository.findTokenByValueAndDeleted(tokenValue, false);
+
         if(tokenOptional.isEmpty()){
             throw new TokenNotExistsOrAlreadyExpiredException("token is already delete, or not found");
         }
@@ -74,5 +77,17 @@ public class UserService {
         token.setDeleted(true);
         Token softDeletedToken = tokenRepository.save(token);
         return true;
+    }
+
+    public User validateToken(String tokenValue){
+
+        Optional<Token> tokenOptional =
+                tokenRepository.findTokenByValueAndDeletedAndExpiryAtGreaterThan(tokenValue, false, new Date());
+
+        if(tokenOptional.isEmpty()){
+            return null;
+        }
+
+        return tokenOptional.get().getUser();
     }
 }
